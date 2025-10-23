@@ -2,7 +2,7 @@ namespace BankAccount;
 
 public class Bank
 {
-    private Dictionary<string, BankAccount> _accounts = new();
+    private readonly Dictionary<string, BankAccount> _accounts = new();
     
     public BankAccount CreateAccount(string personalNumber, string name)
     {
@@ -11,7 +11,7 @@ public class Bank
             throw new Exception("An account with this personal number already exists.");
         }
 
-        BankAccount newAccount = new BankAccount(name, personalNumber);
+        var newAccount = new BankAccount(name, personalNumber);
         _accounts[personalNumber] = newAccount;
         return newAccount;
     }
@@ -20,7 +20,7 @@ public class Bank
     {
         if (_accounts.ContainsKey(personalNumber))
         {
-            BankAccount account = _accounts[personalNumber];
+            var account = _accounts[personalNumber];
 
             if (account.Owner == name)
             {

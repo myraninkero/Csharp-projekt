@@ -4,8 +4,8 @@ class Program
 {
     static void Main(string[] args)
     {
-        Bank bank = new Bank();
-        bool exitProgram = false;
+        var bank = new Bank();
+        var exitProgram = false;
         while (!exitProgram)
         {
             BankAccount account = null;
@@ -14,13 +14,13 @@ class Program
                 Console.WriteLine("\n1. Create account");
                 Console.WriteLine("2. Log in to account");
                 Console.Write("Choose an option: ");
-                string choice = Console.ReadLine();
+                var choice = Console.ReadLine();
 
                 Console.Write("Enter personal number: [YYYYMMDDXXXX] ");
-                string personalNumber = Console.ReadLine();
+                var personalNumber = Console.ReadLine();
 
                 Console.Write("Enter your name (e.g. Cloud Strife): ");
-                string name = Console.ReadLine();
+                var name = Console.ReadLine();
 
                 if (choice == "1")
                 {
@@ -51,7 +51,7 @@ class Program
                     Console.WriteLine("Invalid choice. Please enter 1 or 2.");
                 }
             }
-            bool loggedIn = true;
+            var loggedIn = true;
             while (loggedIn)
             {
                 Console.WriteLine("\n1. Deposit");
@@ -68,26 +68,25 @@ class Program
                 if (choice == "1")
                 {
                     Console.Write("Enter amount to deposit: ");
-                    var amount = decimal.Parse(Console.ReadLine());
-                    var newBalance = account.Deposit(amount);
+                    var depositAmount = decimal.Parse(Console.ReadLine());
+                    var newBalance = account.Deposit(depositAmount);
                     Console.WriteLine($"New balance: {newBalance}kr");
                 }
                 else if (choice == "2")
                 {
                     Console.Write("Enter amount to withdraw: ");
-                    var amount = decimal.Parse(Console.ReadLine());
-                    var newBalance = account.Withdraw(amount);
+                    var withdrawAmount = decimal.Parse(Console.ReadLine());
+                    var newBalance = account.Withdraw(withdrawAmount);
                     if (account.GetBalance() < 0)
                     {
                         Console.WriteLine("Insufficient funds. Transaction cancelled.");
-                        account.Deposit(amount);
+                        account.Deposit(withdrawAmount);
                     }
                     else Console.WriteLine($"New balance: {newBalance}kr");
                 }
                 else if (choice == "3")
                 {
-                    var balance = account.GetBalance();
-                    Console.WriteLine($"Current balance: {balance}kr");
+                    Console.WriteLine($"Current balance: {account.GetBalance()}kr");
                 }
                 else if (choice == "4")
                 {
